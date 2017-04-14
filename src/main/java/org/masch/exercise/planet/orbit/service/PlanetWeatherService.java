@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 
 import org.masch.exercise.planet.orbit.dto.Planet;
 import org.masch.exercise.planet.orbit.dto.CoordinatePoint;
+import org.masch.exercise.planet.orbit.dto.WeatherPrediction;
 import org.masch.exercise.planet.orbit.enums.WeatherTypeEnum;
 import org.masch.exercise.planet.orbit.dto.PointsAlignedResult;
 
@@ -23,38 +24,52 @@ public class PlanetWeatherService {
         this.pointService = pointService;
     }
 
-    public List<WeatherTypeEnum> predictWeather(List<Planet> planets, int amountMovements) {
-
-        List<WeatherTypeEnum> result = new ArrayList<>(amountMovements);
+    public List<WeatherPrediction> predictWeather(List<Planet> planets, int amountMovements) {
+        final double[] maxTrianglePerimeter = {0d};
+        List<WeatherPrediction> weatherPredictions = new ArrayList<>(amountMovements);
 
         IntStream.rangeClosed(1, amountMovements).forEach( x -> {
-                    result.add(getWeather(orbitService.calculatePlanetTransferred(planets)));
-                    });
+            WeatherPrediction weatherPrediction = getWeatherPrediction(orbitService.calculatePlanetTransferred(planets));
+            if (weatherPrediction.getPerimeter() > maxTrianglePerimeter[0])
+                maxTrianglePerimeter[0] = weatherPrediction.getPerimeter();
 
-        return result;
+            weatherPredictions.add(weatherPrediction);
+        });
+
+        setMaxPeriodWeatherType(maxTrianglePerimeter[0], weatherPredictions, WeatherTypeEnum.MAX_RAIN);
+
+        return weatherPredictions;
     }
 
-    public WeatherTypeEnum getWeather(List<CoordinatePoint> points) {
+    private void setMaxPeriodWeatherType(double maxPerimeterValue, List<WeatherPrediction> result, WeatherTypeEnum weatherType) {
+        result.stream()
+                .filter(weatherPrediction -> weatherPrediction.getPerimeter() == maxPerimeterValue)
+                .forEach(weatherPrediction -> weatherPrediction.setWeatherTypeEnum(weatherType));
+    }
 
-        WeatherTypeEnum result;
+    public WeatherPrediction getWeatherPrediction(List<CoordinatePoint> points) {
+
+        double perimeter = 0;
+        WeatherTypeEnum weatherType;
         PointsAlignedResult pointsAlignedResult = pointService.checkPointsAlignmentWithCenter(points);
 
         // TODO: Refactor for more states
         if (pointsAlignedResult.isPointsAlignments()) {
             if (pointsAlignedResult.isPointsAlignmentsWithCenter()) {
-                result = WeatherTypeEnum.DROUGHT;
+                weatherType = WeatherTypeEnum.DROUGHT;
             } else {
-                result = WeatherTypeEnum.OPTIMAL;
+                weatherType = WeatherTypeEnum.OPTIMAL;
             }
         } else {
             if (pointService.isCenterPointInTriangle(points)) {
-                result = WeatherTypeEnum.RAIN;
+                weatherType = WeatherTypeEnum.RAIN;
+                perimeter =  pointService.calculatePerimeter(points);
             } else {
-                result = WeatherTypeEnum.NEUTRAL;
+                weatherType = WeatherTypeEnum.NEUTRAL;
             }
         }
 
-        return result;
+        return WeatherPrediction.create(perimeter, weatherType);
     }
 
 }

@@ -10,7 +10,7 @@ import org.masch.exercise.planet.orbit.dto.PointsAlignedResult;
 
 public class PointService {
 
-    private final static double deltaCalculation = 0.01;
+    public final static double deltaCalculation = 0.01;
     private final CoordinatePoint centerPointer = CoordinatePoint.create(0, 0);
 
     public static PointService create() {
@@ -124,6 +124,21 @@ public class PointService {
                 -
                 ((coordinatePoint2.getX() - coordinatePoint3.getX()) *
                  (coordinatePoint1.getY() - coordinatePoint3.getY()));
+    }
+
+    public double calculatePerimeter(List<CoordinatePoint> points) {
+
+        if (!validateInputForCheckPointsTriangle(points))
+            return 0;
+
+        return calculateDistance(points.get(1), points.get(0)) +
+               calculateDistance(points.get(1), points.get(2)) +
+               calculateDistance(points.get(2), points.get(0));
+    }
+
+    private double calculateDistance(CoordinatePoint sourcePoint, CoordinatePoint finalPoint) {
+        return Math.sqrt(Math.pow(sourcePoint.getX() - finalPoint.getX(), 2) +
+                         Math.pow(sourcePoint.getY() - finalPoint.getY(), 2));
     }
 
     private boolean doubleIsEqual(double d1, double d2) {

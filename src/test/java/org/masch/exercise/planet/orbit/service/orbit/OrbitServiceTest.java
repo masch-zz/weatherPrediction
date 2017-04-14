@@ -1,5 +1,6 @@
 package org.masch.exercise.planet.orbit.service.orbit;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -12,10 +13,10 @@ import static org.junit.Assert.assertNotNull;
 import org.masch.exercise.planet.orbit.dto.Planet;
 import org.masch.exercise.planet.orbit.dto.CoordinatePoint;
 import org.masch.exercise.planet.orbit.service.OrbitService;
+import org.masch.exercise.planet.orbit.service.PointService;
 
 public class OrbitServiceTest {
 
-    private static final double deltaCalculation = 0.01;
     private OrbitService orbitService = OrbitService.create();
 
     @Test
@@ -44,7 +45,7 @@ public class OrbitServiceTest {
 
         int amountMovements = 4;
         List<CoordinatePoint> planetCoordinatePoints = new ArrayList<>();
-        List<Planet> planets = new ArrayList<>(Arrays.asList(Planet.create("Vulcano", 500, true, 1)));
+        List<Planet> planets = new ArrayList<>(Collections.singletonList(Planet.create("Vulcano", 500, true, 1)));
         IntStream.rangeClosed(1, amountMovements).forEach(x ->
                 planetCoordinatePoints.addAll(orbitService.calculatePlanetTransferred(planets)));
 
@@ -58,7 +59,7 @@ public class OrbitServiceTest {
 
         amountMovements = 5;
         planetCoordinatePoints.clear();
-        List<Planet> planets2 = new ArrayList<>(Arrays.asList(Planet.create("Earth", 500, true, 90)));
+        List<Planet> planets2 = new ArrayList<>(Collections.singletonList(Planet.create("Earth", 500, true, 90)));
         IntStream.rangeClosed(1, amountMovements).forEach(x ->
                 planetCoordinatePoints.addAll(orbitService.calculatePlanetTransferred(planets2)));
         assertNotNull(planetCoordinatePoints);
@@ -76,7 +77,7 @@ public class OrbitServiceTest {
 
         int amountMovements = 4;
         List<CoordinatePoint> planetCoordinatePoints = new ArrayList<>();
-        List<Planet> planets = new ArrayList<>(Arrays.asList(Planet.create("Ferengi", 500, false, 1)));
+        List<Planet> planets = new ArrayList<>(Collections.singletonList(Planet.create("Ferengi", 500, false, 1)));
         IntStream.rangeClosed(1, amountMovements).forEach(x ->
                               planetCoordinatePoints.addAll(orbitService.calculatePlanetTransferred(planets)));
 
@@ -90,7 +91,7 @@ public class OrbitServiceTest {
 
         amountMovements = 5;
         planetCoordinatePoints.clear();
-        List<Planet> planets2 = new ArrayList<>(Arrays.asList(Planet.create("Earth", 500, false, 90)));
+        List<Planet> planets2 = new ArrayList<>(Collections.singletonList(Planet.create("Earth", 500, false, 90)));
         IntStream.rangeClosed(1, amountMovements).forEach(x ->
                 planetCoordinatePoints.addAll(orbitService.calculatePlanetTransferred(planets2)));
         assertNotNull(planetCoordinatePoints);
@@ -105,8 +106,8 @@ public class OrbitServiceTest {
 
     private void assertCoordinatePoint(double xExpected, double yExpected, CoordinatePoint coordinatePoint) {
         assertNotNull(coordinatePoint);
-        assertEquals(xExpected, coordinatePoint.getX(), deltaCalculation);
-        assertEquals(yExpected, coordinatePoint.getY(), deltaCalculation);
+        assertEquals(xExpected, coordinatePoint.getX(), PointService.deltaCalculation);
+        assertEquals(yExpected, coordinatePoint.getY(), PointService.deltaCalculation);
 
     }
 

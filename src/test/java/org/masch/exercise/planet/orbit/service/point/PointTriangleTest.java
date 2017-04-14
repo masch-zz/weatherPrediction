@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static junit.framework.TestCase.assertFalse;
 import org.masch.exercise.planet.orbit.dto.CoordinatePoint;
@@ -13,7 +15,7 @@ public class PointTriangleTest {
     private PointService pointService = PointService.create();
 
     @Test
-    public void isPointInTriangleTest() {
+    public void isPointInTriangle() {
 
         assertTrue(pointService.isPointInTriangle(new ArrayList<>(Arrays.asList(
                 CoordinatePoint.create(2, 0),
@@ -36,7 +38,7 @@ public class PointTriangleTest {
     }
 
     @Test
-    public void isNOTPointInTriangleTest() {
+    public void isNOTPointInTriangle() {
 
         assertFalse(pointService.isPointInTriangle(new ArrayList<>(Arrays.asList(
                 CoordinatePoint.create(2, 0),
@@ -59,13 +61,21 @@ public class PointTriangleTest {
     }
 
     @Test
-    public void isPointInTriangleInvalidInputTest() {
+    public void isPointInTriangleInvalidInput() {
 
         assertFalse(pointService.isPointInTriangle(new ArrayList<>(Arrays.asList(
                 CoordinatePoint.create(2, 0),
                 CoordinatePoint.create(3, 6))),
                 CoordinatePoint.create(2, 3)));
 
+    }
+
+    @Test
+    public void calculatePerimeter() {
+        assertEquals(16.70, pointService.calculatePerimeter(new ArrayList<>(Arrays.asList(
+                CoordinatePoint.create(-3, 0),
+                CoordinatePoint.create(1, 3),
+                CoordinatePoint.create(3, -2)))), PointService.deltaCalculation);
     }
 
 }
