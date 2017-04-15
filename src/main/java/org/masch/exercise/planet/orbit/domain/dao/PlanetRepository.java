@@ -6,4 +6,6 @@ import org.masch.exercise.planet.orbit.domain.entity.PlanetEntity;
 
 public interface PlanetRepository extends CrudRepository<PlanetEntity, Long> {
 
+    PlanetEntity findByName(String name);
+
 }

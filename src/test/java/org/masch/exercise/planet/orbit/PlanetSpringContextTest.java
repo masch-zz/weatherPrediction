@@ -1,4 +1,4 @@
-package org.masch.exercise.planet.orbit.dao;
+package org.masch.exercise.planet.orbit;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

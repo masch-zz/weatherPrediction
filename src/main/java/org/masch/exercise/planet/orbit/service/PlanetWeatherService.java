@@ -9,6 +9,8 @@ import org.masch.exercise.planet.orbit.domain.dto.CoordinatePoint;
 import org.masch.exercise.planet.orbit.domain.dto.WeatherPrediction;
 import org.masch.exercise.planet.orbit.enums.WeatherTypeEnum;
 import org.masch.exercise.planet.orbit.domain.dto.PointsAlignedResult;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 public class PlanetWeatherService {
 

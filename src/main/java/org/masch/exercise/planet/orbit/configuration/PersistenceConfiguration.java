@@ -6,16 +6,20 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import org.masch.exercise.planet.orbit.domain.dto.Planet;
 import org.masch.exercise.planet.orbit.domain.dao.PlanetRepository;
-import org.masch.exercise.planet.orbit.domain.entity.PlanetWeatherPredictionEntity;
-import org.masch.exercise.planet.orbit.domain.dao.PlanetWeatherPredictionRepository;
+import org.masch.exercise.planet.orbit.domain.entity.PlanetWeatherPredictionReportEntity;
+import org.masch.exercise.planet.orbit.domain.dao.PlanetWeatherPredictionReportRepository;
+import org.masch.exercise.planet.orbit.domain.entity.PlanetWeatherPredictionHistoryReportEntity;
+import org.masch.exercise.planet.orbit.domain.dao.PlanetWeatherPredictionHistoryReportRepository;
 
 @Configuration
 @EntityScan(basePackageClasses = {
         Planet.class,
-        PlanetWeatherPredictionEntity.class})
+        PlanetWeatherPredictionReportEntity.class,
+        PlanetWeatherPredictionHistoryReportEntity.class})
 @EnableJpaRepositories(basePackageClasses = {
         PlanetRepository.class,
-        PlanetWeatherPredictionRepository.class})
+        PlanetWeatherPredictionReportRepository.class,
+        PlanetWeatherPredictionHistoryReportRepository.class})
 public class PersistenceConfiguration {
 
 }
