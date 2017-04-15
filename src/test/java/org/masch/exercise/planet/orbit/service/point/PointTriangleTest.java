@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static junit.framework.TestCase.assertFalse;
-import org.masch.exercise.planet.orbit.dto.CoordinatePoint;
+
 import org.masch.exercise.planet.orbit.service.PointService;
+import org.masch.exercise.planet.orbit.domain.dto.CoordinatePoint;
 
 public class PointTriangleTest {
     private PointService pointService = PointService.create();

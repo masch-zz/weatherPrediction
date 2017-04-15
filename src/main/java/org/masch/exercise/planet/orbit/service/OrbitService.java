@@ -3,8 +3,8 @@ package org.masch.exercise.planet.orbit.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.masch.exercise.planet.orbit.dto.Planet;
-import org.masch.exercise.planet.orbit.dto.CoordinatePoint;
+import org.masch.exercise.planet.orbit.domain.dto.Planet;
+import org.masch.exercise.planet.orbit.domain.dto.CoordinatePoint;
 
 public class OrbitService {
 

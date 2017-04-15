@@ -1,4 +1,4 @@
-package org.masch.exercise.planet.orbit.dto;
+package org.masch.exercise.planet.orbit.domain.dto;
 
 public class PointsAlignedResult {
 

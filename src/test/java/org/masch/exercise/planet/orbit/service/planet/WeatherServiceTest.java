@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-import org.masch.exercise.planet.orbit.dto.CoordinatePoint;
-import org.masch.exercise.planet.orbit.dto.WeatherPrediction;
 import org.masch.exercise.planet.orbit.service.OrbitService;
 import org.masch.exercise.planet.orbit.service.PointService;
 import org.masch.exercise.planet.orbit.enums.WeatherTypeEnum;
+import org.masch.exercise.planet.orbit.domain.dto.CoordinatePoint;
+import org.masch.exercise.planet.orbit.domain.dto.WeatherPrediction;
 import org.masch.exercise.planet.orbit.service.PlanetWeatherService;
 
 public class WeatherServiceTest {

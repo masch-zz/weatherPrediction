@@ -8,11 +8,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import org.masch.exercise.planet.orbit.dto.Planet;
+import org.masch.exercise.planet.orbit.domain.dto.Planet;
 import org.masch.exercise.planet.orbit.service.OrbitService;
 import org.masch.exercise.planet.orbit.service.PointService;
 import org.masch.exercise.planet.orbit.enums.WeatherTypeEnum;
-import org.masch.exercise.planet.orbit.dto.WeatherPrediction;
+import org.masch.exercise.planet.orbit.domain.dto.WeatherPrediction;
 import org.masch.exercise.planet.orbit.service.PlanetWeatherService;
 
 public class PlanetWeatherTest {

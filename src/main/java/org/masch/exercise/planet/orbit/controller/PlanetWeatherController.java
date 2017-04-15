@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 @Controller
-@EnableAutoConfiguration
 public class PlanetWeatherController {
 
     @RequestMapping("/")
@@ -16,7 +15,4 @@ public class PlanetWeatherController {
         return "Hello Planet!";
     }
 
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(PlanetWeatherController.class, args);
-    }
 }

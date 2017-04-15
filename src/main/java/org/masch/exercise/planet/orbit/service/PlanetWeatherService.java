@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 
-import org.masch.exercise.planet.orbit.dto.Planet;
-import org.masch.exercise.planet.orbit.dto.CoordinatePoint;
-import org.masch.exercise.planet.orbit.dto.WeatherPrediction;
+import org.masch.exercise.planet.orbit.domain.dto.Planet;
+import org.masch.exercise.planet.orbit.domain.dto.CoordinatePoint;
+import org.masch.exercise.planet.orbit.domain.dto.WeatherPrediction;
 import org.masch.exercise.planet.orbit.enums.WeatherTypeEnum;
-import org.masch.exercise.planet.orbit.dto.PointsAlignedResult;
+import org.masch.exercise.planet.orbit.domain.dto.PointsAlignedResult;
 
 public class PlanetWeatherService {
 

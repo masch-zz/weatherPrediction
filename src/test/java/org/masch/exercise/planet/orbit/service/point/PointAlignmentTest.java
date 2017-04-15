@@ -7,9 +7,10 @@ import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
-import org.masch.exercise.planet.orbit.dto.CoordinatePoint;
+
 import org.masch.exercise.planet.orbit.service.PointService;
-import org.masch.exercise.planet.orbit.dto.PointsAlignedResult;
+import org.masch.exercise.planet.orbit.domain.dto.CoordinatePoint;
+import org.masch.exercise.planet.orbit.domain.dto.PointsAlignedResult;
 
 public class PointAlignmentTest {
 

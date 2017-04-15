@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.ArrayList;
 
-import org.masch.exercise.planet.orbit.dto.CoordinatePoint;
-import org.masch.exercise.planet.orbit.dto.PointsAlignedResult;
+import org.masch.exercise.planet.orbit.domain.dto.CoordinatePoint;
+import org.masch.exercise.planet.orbit.domain.dto.PointsAlignedResult;
 
 public class PointService {
 
