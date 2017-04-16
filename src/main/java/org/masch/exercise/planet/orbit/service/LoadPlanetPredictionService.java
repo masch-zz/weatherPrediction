@@ -6,8 +6,12 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.InitializingBean;
 
 import org.masch.exercise.planet.orbit.domain.dto.Planet;
+import org.springframework.beans.factory.annotation.Value;
 
 public class LoadPlanetPredictionService implements InitializingBean {
+
+    @Value("${example.report.name}")
+    private String reportName;
 
     private PlanetWeatherPredictionReportService planetWeatherPredictionReportService;
 
@@ -29,7 +33,7 @@ public class LoadPlanetPredictionService implements InitializingBean {
                 Planet.create("Betasoide", 2000, true, 3),
                 Planet.create("Vulcano", 1000, false, 5)));
 
-        planetWeatherPredictionReportService.savePredictions("Solar system ML", planets, amountDaysMovements);
+        planetWeatherPredictionReportService.savePredictions(reportName, planets, amountDaysMovements);
 
     }
 }

@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 
+import com.google.common.util.concurrent.AtomicDouble;
+
 import org.masch.exercise.planet.orbit.domain.dto.Planet;
+import org.masch.exercise.planet.orbit.enums.WeatherTypeEnum;
 import org.masch.exercise.planet.orbit.domain.dto.CoordinatePoint;
 import org.masch.exercise.planet.orbit.domain.dto.WeatherPrediction;
-import org.masch.exercise.planet.orbit.enums.WeatherTypeEnum;
 import org.masch.exercise.planet.orbit.domain.dto.PointsAlignedResult;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Service;
 
 public class PlanetWeatherService {
 
@@ -27,18 +27,18 @@ public class PlanetWeatherService {
     }
 
     public List<WeatherPrediction> predictWeather(List<Planet> planets, int amountMovements) {
-        final double[] maxTrianglePerimeter = {0d};
+        AtomicDouble maxTrianglePerimeter = new AtomicDouble();
         List<WeatherPrediction> weatherPredictions = new ArrayList<>(amountMovements);
 
         IntStream.rangeClosed(1, amountMovements).forEach( x -> {
             WeatherPrediction weatherPrediction = getWeatherPrediction(orbitService.calculatePlanetTransferred(planets));
-            if (weatherPrediction.getPerimeter() > maxTrianglePerimeter[0])
-                maxTrianglePerimeter[0] = weatherPrediction.getPerimeter();
+            if (weatherPrediction.getPerimeter() > maxTrianglePerimeter.get())
+                maxTrianglePerimeter.set(weatherPrediction.getPerimeter());
 
             weatherPredictions.add(weatherPrediction);
         });
 
-        setMaxPeriodWeatherType(maxTrianglePerimeter[0], weatherPredictions, WeatherTypeEnum.MAX_RAIN);
+        setMaxPeriodWeatherType(maxTrianglePerimeter.get(), weatherPredictions, WeatherTypeEnum.MAX_RAIN);
 
         return weatherPredictions;
     }

@@ -1,14 +1,14 @@
 package org.masch.exercise.planet.orbit.service.planet;
 
-import org.junit.Test;
-
 import java.util.List;
 import java.util.Optional;
 import javax.inject.Inject;
 
+import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import org.springframework.beans.factory.annotation.Value;
 
 import org.masch.exercise.planet.orbit.enums.WeatherTypeEnum;
 import org.masch.exercise.planet.orbit.PlanetSpringContextTest;
@@ -21,7 +21,8 @@ public class PlanetWeatherPredictionReportServiceTest extends PlanetSpringContex
     @Inject
     private PlanetWeatherPredictionReportService planetWeatherPredictionReportService;
 
-    private String reportName = "Solar system ML";
+    @Value("${example.report.name}")
+    private String reportName;
 
     @Test
     public void validateReportML() {

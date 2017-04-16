@@ -1,7 +1,6 @@
-package org.masch.exercise.planet.orbit.configuration;
+package org.masch.exercise.planet.orbit.controller;
 
 import java.util.Optional;
-import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +12,19 @@ import org.masch.exercise.planet.orbit.domain.dto.PlanetWeatherPredictionHistory
 @RestController
 public class PlanetWeatherController {
 
-    @Inject
+    private final String DEFAULT_REPORT_NAME = "ML Solar system";
     private PlanetWeatherPredictionReportService planetWeatherPredictionReportService;
 
+    public static PlanetWeatherController create(PlanetWeatherPredictionReportService planetWeatherPredictionReportService) {
+        return new PlanetWeatherController(planetWeatherPredictionReportService);
+    }
+
+    private PlanetWeatherController(PlanetWeatherPredictionReportService planetWeatherPredictionReportService) {
+        this.planetWeatherPredictionReportService = planetWeatherPredictionReportService;
+    }
+
     @RequestMapping("/clima")
-    public PlanetWeatherPredictionHistoryReport weatherByDay(@RequestParam(value = "nombreReporte", defaultValue = "Solar system ML") String reportName,
+    public PlanetWeatherPredictionHistoryReport weatherByDay(@RequestParam(value = "nombreReporte", defaultValue = DEFAULT_REPORT_NAME) String reportName,
                                                              @RequestParam(value = "dia") long numberDay) {
 
         Optional<PlanetWeatherPredictionHistoryReport> historyReportDay = planetWeatherPredictionReportService

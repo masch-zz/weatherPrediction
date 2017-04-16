@@ -1,6 +1,5 @@
 package org.masch.exercise.planet.orbit.configuration;
 
-import org.masch.exercise.planet.orbit.service.LoadPlanetPredictionService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,6 +7,7 @@ import org.masch.exercise.planet.orbit.service.PointService;
 import org.masch.exercise.planet.orbit.service.OrbitService;
 import org.masch.exercise.planet.orbit.domain.dao.PlanetRepository;
 import org.masch.exercise.planet.orbit.service.PlanetWeatherService;
+import org.masch.exercise.planet.orbit.service.LoadPlanetPredictionService;
 import org.masch.exercise.planet.orbit.service.PlanetWeatherPredictionReportService;
 import org.masch.exercise.planet.orbit.domain.dao.PlanetWeatherPredictionReportRepository;
 import org.masch.exercise.planet.orbit.domain.dao.PlanetWeatherPredictionHistoryReportRepository;
@@ -41,4 +41,5 @@ public class ServiceConfiguration {
     public LoadPlanetPredictionService loadPlanetPredictionService(PlanetWeatherPredictionReportService planetWeatherPredictionReportService) {
         return LoadPlanetPredictionService.create(planetWeatherPredictionReportService);
     }
+
 }
