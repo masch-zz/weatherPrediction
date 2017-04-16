@@ -56,4 +56,5 @@ public class PlanetWeatherPredictionReportEntity {
     public Date getEndTimeStamp() {
         return endTimeStamp;
     }
+
 }

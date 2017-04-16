@@ -24,12 +24,12 @@ public class LoadPlanetPredictionService implements InitializingBean {
 
         int amountDaysMovements = 10 * 365; // 10 years
 
-        ArrayList<Planet> mlPlanets = new ArrayList<>(Arrays.asList(
+        ArrayList<Planet> planets = new ArrayList<>(Arrays.asList(
                 Planet.create("Ferengi", 500, true, 1),
                 Planet.create("Betasoide", 2000, true, 3),
                 Planet.create("Vulcano", 1000, false, 5)));
 
-        planetWeatherPredictionReportService.savePredictions("ML Solar system", mlPlanets, amountDaysMovements);
+        planetWeatherPredictionReportService.savePredictions("ML Solar system", planets, amountDaysMovements);
 
     }
 }
