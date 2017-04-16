@@ -29,7 +29,7 @@ public class LoadPlanetPredictionService implements InitializingBean {
                 Planet.create("Betasoide", 2000, true, 3),
                 Planet.create("Vulcano", 1000, false, 5)));
 
-        planetWeatherPredictionReportService.savePredictions("ML Solar system", planets, amountDaysMovements);
+        planetWeatherPredictionReportService.savePredictions("Solar system ML", planets, amountDaysMovements);
 
     }
 }

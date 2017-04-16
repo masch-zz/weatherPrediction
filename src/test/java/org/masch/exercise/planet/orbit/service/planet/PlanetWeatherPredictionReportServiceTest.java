@@ -21,7 +21,7 @@ public class PlanetWeatherPredictionReportServiceTest extends PlanetSpringContex
     @Inject
     private PlanetWeatherPredictionReportService planetWeatherPredictionReportService;
 
-    private String reportName = "ML Solar system";
+    private String reportName = "Solar system ML";
 
     @Test
     public void validateReportML() {
