@@ -35,7 +35,7 @@ public class PlanetWeatherPredictionHistoryReportEntity {
     private PlanetWeatherPredictionHistoryReportEntity() {
     }
 
-    public PlanetWeatherPredictionHistoryReportEntity(Long id, Long day, WeatherTypeEnum weather, PlanetWeatherPredictionReportEntity planetWeatherPredictionReportEntity) {
+    private PlanetWeatherPredictionHistoryReportEntity(Long id, Long day, WeatherTypeEnum weather, PlanetWeatherPredictionReportEntity planetWeatherPredictionReportEntity) {
         this.id = id;
         this.day = day;
         this.weather = weather;
@@ -52,10 +52,6 @@ public class PlanetWeatherPredictionHistoryReportEntity {
 
     public WeatherTypeEnum getWeather() {
         return weather;
-    }
-
-    public PlanetWeatherPredictionReportEntity getPlanetWeatherPredictionReportEntity() {
-        return planetWeatherPredictionReportEntity;
     }
 
 }

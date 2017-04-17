@@ -29,10 +29,6 @@ public class PlanetEntity {
         return new PlanetEntity(null, name, radius, clockWiseRotation, degreeAngularVelocity);
     }
 
-    public static PlanetEntity create(Long id, String name, double radius, boolean clockWiseRotation, double degreeAngularVelocity) {
-        return new PlanetEntity(id, name, radius, clockWiseRotation, degreeAngularVelocity);
-    }
-
     private PlanetEntity(Long id, String name, double radius, boolean clockWiseRotation, double degreeAngularVelocity) {
         this.id = id;
         this.name = name;

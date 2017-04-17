@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import org.masch.exercise.planet.orbit.Util.DateUtil;
 import org.masch.exercise.planet.orbit.domain.dto.Planet;
-import org.masch.exercise.planet.orbit.domain.dao.PlanetRepository;
 import org.masch.exercise.planet.orbit.domain.dto.WeatherPrediction;
 import org.masch.exercise.planet.orbit.domain.dto.PlanetWeatherPredictionReport;
 import org.masch.exercise.planet.orbit.domain.dto.PlanetWeatherPredictionHistoryReport;
@@ -26,21 +25,19 @@ public class PlanetWeatherPredictionReportService {
     private static final String START_SAVE_PREDICTION_PROCESS_MESSAGE = "Start save prediction process: %s";
     private static final Logger LOGGER = LoggerFactory.getLogger(PlanetWeatherPredictionReportService.class);
 
-    private PlanetRepository planetRepository;
     private PlanetWeatherService planetWeatherService;
     private PlanetWeatherPredictionReportRepository planetWeatherPredictionReportRepository;
     private PlanetWeatherPredictionHistoryReportRepository planetWeatherPredictionHistoryReportRepository;
 
-    public static PlanetWeatherPredictionReportService create(PlanetRepository planetRepository, PlanetWeatherService planetWeatherService,
+    public static PlanetWeatherPredictionReportService create(PlanetWeatherService planetWeatherService,
                                                               PlanetWeatherPredictionReportRepository planetWeatherPredictionReportRepository,
                                                               PlanetWeatherPredictionHistoryReportRepository planetWeatherPredictionHistoryReportRepository) {
-        return  new PlanetWeatherPredictionReportService(planetRepository, planetWeatherService, planetWeatherPredictionReportRepository, planetWeatherPredictionHistoryReportRepository);
+        return  new PlanetWeatherPredictionReportService(planetWeatherService, planetWeatherPredictionReportRepository, planetWeatherPredictionHistoryReportRepository);
     }
 
-    private PlanetWeatherPredictionReportService(PlanetRepository planetRepository, PlanetWeatherService planetWeatherService,
+    private PlanetWeatherPredictionReportService(PlanetWeatherService planetWeatherService,
                                                  PlanetWeatherPredictionReportRepository planetWeatherPredictionReportRepository,
                                                  PlanetWeatherPredictionHistoryReportRepository planetWeatherPredictionHistoryReportRepository) {
-        this.planetRepository = planetRepository;
         this.planetWeatherService = planetWeatherService;
         this.planetWeatherPredictionReportRepository = planetWeatherPredictionReportRepository;
         this.planetWeatherPredictionHistoryReportRepository = planetWeatherPredictionHistoryReportRepository;
@@ -49,10 +46,6 @@ public class PlanetWeatherPredictionReportService {
     void savePredictions(String reportName, List<Planet> planets, int amountDaysMovements) {
 
         LOGGER.info(String.format(START_SAVE_PREDICTION_PROCESS_MESSAGE, reportName));
-
-        /*PlanetEntity ferengiPlanet = planetRepository.save(PlanetEntity.create("Ferengi", 500, true, 1));
-        PlanetEntity vulcanoPlanet = planetRepository.save(PlanetEntity.create("Vulcano", 1000, false, 5));
-        PlanetEntity betasoidePlanet = planetRepository.save(PlanetEntity.create("Betasoide", 2000, true, 3));*/
 
         Date startTimeStampReport = DateUtil.nowAsDate();
         List<WeatherPrediction> weatherPredictions = planetWeatherService.predictWeather(planets, amountDaysMovements);

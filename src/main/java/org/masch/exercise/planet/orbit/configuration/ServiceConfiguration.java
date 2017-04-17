@@ -26,10 +26,10 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public PlanetWeatherPredictionReportService planetWeatherPredictionReportService(PlanetRepository planetRepository, PlanetWeatherService planetWeatherService,
+    public PlanetWeatherPredictionReportService planetWeatherPredictionReportService(PlanetWeatherService planetWeatherService,
                                                                                      PlanetWeatherPredictionReportRepository planetWeatherPredictionReportRepository,
                                                                                      PlanetWeatherPredictionHistoryReportRepository planetWeatherPredictionHistoryReportRepository) {
-        return PlanetWeatherPredictionReportService.create(planetRepository, planetWeatherService, planetWeatherPredictionReportRepository, planetWeatherPredictionHistoryReportRepository);
+        return PlanetWeatherPredictionReportService.create(planetWeatherService, planetWeatherPredictionReportRepository, planetWeatherPredictionHistoryReportRepository);
     }
 
     @Bean

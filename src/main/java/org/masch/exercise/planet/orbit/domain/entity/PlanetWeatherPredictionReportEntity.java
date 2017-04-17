@@ -23,10 +23,6 @@ public class PlanetWeatherPredictionReportEntity {
     @Column
     private Date endTimeStamp;
 
-    public static PlanetWeatherPredictionReportEntity create(Long id, String name, Date startTimeStamp, Date endTimeStamp) {
-        return new PlanetWeatherPredictionReportEntity(id, name, startTimeStamp, endTimeStamp);
-    }
-
     public static PlanetWeatherPredictionReportEntity create(String name, Date startTimeStamp, Date endTimeStamp) {
         return new PlanetWeatherPredictionReportEntity(null, name, startTimeStamp, endTimeStamp);
     }
